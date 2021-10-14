@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+   <link href="../static/css/style.css" rel="stylesheet">
+</head>
+<html>
+   <body>
+      <h1>{{message}}</h1>
+      <form action= "http://localhost:5000/" method = "POST"
+          enctype = "multipart/form-data">
+              <input type = "file" name = "file" multiple>
+              <input type="submit" name="submit" onclick="$('#loading').show();">
+              <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />Loading!</div>
+          </form>
+   </body>
+</html>

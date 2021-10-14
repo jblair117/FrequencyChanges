@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <meta charset="utf-8">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <link href="../static/css/style.css" rel="stylesheet">
+       <script type="text/javascript"> 
+       //checking this part 
+        var places_var = '{{ places }}'
+        function changeImage(img_name)
+        {   
+            var process_img = img_name.replace(" ","");
+            var img = document.getElementById("image");
+            img.src="../static/image/" + process_img + ".png";
+        }
+   
+        function changeOriImage()
+        {
+            const tmp = places_var.replace("{","").replace("}","");
+            const places_list = tmp.split(",");
+            var img = document.getElementById("image");
+            img.src="../static/image/petri_net.png";
+
+            for(var i=0; i < places_list.length; i++){
+                var com_elem = 'btn' + places_list[i];
+                // alert(com_elem);
+                var elem = document.getElementById(com_elem);
+                elem.parentNode.removeChild(elem);
+            }
+        }
+
+        function myFunc(places_var) {
+            const tmp = places_var.replace("{","").replace("}","");
+            const places_list = tmp.split(",");
+
+            for(var i=0; i < places_list.length; i++)
+            (function () {
+                var btn = document.createElement("BUTTON");
+                var image_name = places_list[i];
+                // alert("img_reset "+ image_name);
+                btn.id = 'btn' + places_list[i];
+                btn.innerHTML = places_list[i];
+                btn.setAttribute("value", places_list[i]);
+                btn.setAttribute("text",places_list[i]);
+                btn.addEventListener("click", function() {
+                    changeImage(image_name);
+                    }   
+                );
+                btn.style.fontSize = "14px";
+                btn.style.backgroundColor = '#4CAF50';
+                let buttonDiv = document.getElementById("buttons");
+                buttonDiv.appendChild(btn);
+            })();
+        }
+
+        function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }
+        </script>
+   </head>
+   
+   <body>
+       <h1>Petri Net for upload files</h1>
+       <img src="../static/image/petri_net.png" id = "image" alt="petri_net">
+       <h2 style = "text-align: center"> {{message}} </h2>
+
+       <!-- <h3>Here is Preview</h3> -->
+       <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
+       <button id="preview" onclick="myFunc('{{ places }}');">Preview </button>
+       <button id="origin_clickme" onclick="changeOriImage();">The original Image</button>
+
+       <div id="buttons"></div>
+       
+       <!-- <div id = "sliders">
+       </div> -->
+       <div>
+           <p>These are interesting places: {{places}}</p>
+           <p>Please use comma "," to seperate between places</p>
+           <!-- loading might need to added here -->
+           <form action = "http://localhost:5000/select_places" method="POST">
+                <input type="text" id="select_places" name="select_places"><br><br>
+                <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
+                Model: <select name="modelSelect" id="modelSelect">
+                    <!-- <select name="modelSelect" id="modelSelect" onchange="this.form.submit()"></select> -->
+                    <option value="rfb" selected>rfb</option>
+                    <option value="l1">l1</option>
+                    <option value="l2">l2</option>
+                </select> &nbsp;
+                Pen: <input type="range"  style="display: inline;" name="PenInputName" id="PenInputId" value="5" min="1" max="10" oninput="PenOutputId.value = PenInputId.value">
+                <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output> 
+                <br><br>
+                <input type="submit" value="Submit" onclick="$('#loading').show();">
+                <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />Loading!</div>
+           </form>
+      </div>
+   </body>
+</html>
