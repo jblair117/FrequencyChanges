@@ -1,4 +1,4 @@
-from app import detector
+from application import detector
 import re
 
 def check_upload_file(filename):
