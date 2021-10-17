@@ -1,5 +1,5 @@
 from flask import Flask
-from app import detector
+from application import detector
 
 UPLOAD_FOLDER = 'app/upload_files'
 app = Flask(__name__)
