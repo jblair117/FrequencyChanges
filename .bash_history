@@ -456,3 +456,12 @@ ls
 rm -rf FrequencyChanges/
 ls
 git diff
+git add .
+git commit -m "changed loc"
+git push
+git pull
+git push
+ls
+ls -a
+vim .gitignore
+ls

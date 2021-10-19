@@ -15,7 +15,7 @@
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1634637611,,"wq"
+|2,0,1634638212,,"wq"
 :q
 |2,0,1634637559,,"q"
 :q!
@@ -64,38 +64,54 @@
 |3,0,9,1,1,0,1634486016,"RUN pip3 install flask"
 
 # File marks:
-'0  12  6  ~/FrequencyChanges/cloudbuild.yaml
-|4,48,12,6,1634637611,"~/FrequencyChanges/cloudbuild.yaml"
-'1  13  13  ~/FrequencyChanges/cloudbuild.yaml
-|4,49,13,13,1634637559,"~/FrequencyChanges/cloudbuild.yaml"
+'0  94  7  ~/.gitignore
+|4,48,94,7,1634638212,"~/.gitignore"
+'1  12  6  ~/FrequencyChanges/cloudbuild.yaml
+|4,49,12,6,1634637611,"~/FrequencyChanges/cloudbuild.yaml"
 '2  13  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,50,13,13,1634637559,"~/FrequencyChanges/cloudbuild.yaml"
-'3  8  13  ~/FrequencyChanges/cloudbuild.yaml
-|4,51,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
+'3  13  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,51,13,13,1634637559,"~/FrequencyChanges/cloudbuild.yaml"
 '4  8  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,52,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
 '5  8  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,53,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
 '6  8  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,54,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
-'7  3  13  ~/FrequencyChanges/cloudbuild.yaml
-|4,55,3,13,1634637355,"~/FrequencyChanges/cloudbuild.yaml"
+'7  8  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,55,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
 '8  3  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,56,3,13,1634637355,"~/FrequencyChanges/cloudbuild.yaml"
 '9  3  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,57,3,13,1634637355,"~/FrequencyChanges/cloudbuild.yaml"
 
 # Jumplist (newest first):
+-'  94  7  ~/.gitignore
+|4,39,94,7,1634638212,"~/.gitignore"
+-'  1  0  ~/.gitignore
+|4,39,1,0,1634638133,"~/.gitignore"
+-'  12  6  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,12,6,1634637611,"~/FrequencyChanges/cloudbuild.yaml"
 -'  12  6  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,12,6,1634637611,"~/FrequencyChanges/cloudbuild.yaml"
 -'  13  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,13,13,1634637569,"~/FrequencyChanges/cloudbuild.yaml"
+-'  13  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,13,13,1634637569,"~/FrequencyChanges/cloudbuild.yaml"
+-'  13  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,13,13,1634637559,"~/FrequencyChanges/cloudbuild.yaml"
 -'  13  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,13,13,1634637559,"~/FrequencyChanges/cloudbuild.yaml"
 -'  8  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,8,13,1634637550,"~/FrequencyChanges/cloudbuild.yaml"
 -'  8  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,8,13,1634637550,"~/FrequencyChanges/cloudbuild.yaml"
+-'  8  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,8,13,1634637550,"~/FrequencyChanges/cloudbuild.yaml"
+-'  8  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,8,13,1634637550,"~/FrequencyChanges/cloudbuild.yaml"
+-'  8  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
 -'  8  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,8,13,1634637507,"~/FrequencyChanges/cloudbuild.yaml"
 -'  3  13  ~/FrequencyChanges/cloudbuild.yaml
@@ -105,11 +121,25 @@
 -'  3  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,3,13,1634637497,"~/FrequencyChanges/cloudbuild.yaml"
 -'  3  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,3,13,1634637497,"~/FrequencyChanges/cloudbuild.yaml"
+-'  3  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,3,13,1634637497,"~/FrequencyChanges/cloudbuild.yaml"
+-'  3  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,3,13,1634637497,"~/FrequencyChanges/cloudbuild.yaml"
+-'  3  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,3,13,1634637355,"~/FrequencyChanges/cloudbuild.yaml"
+-'  3  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,3,13,1634637355,"~/FrequencyChanges/cloudbuild.yaml"
 -'  13  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,13,13,1634637324,"~/FrequencyChanges/cloudbuild.yaml"
 -'  13  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,13,13,1634637324,"~/FrequencyChanges/cloudbuild.yaml"
+-'  13  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,13,13,1634637324,"~/FrequencyChanges/cloudbuild.yaml"
+-'  13  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,13,13,1634637324,"~/FrequencyChanges/cloudbuild.yaml"
+-'  13  13  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,13,13,1634637320,"~/FrequencyChanges/cloudbuild.yaml"
 -'  13  13  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,13,13,1634637320,"~/FrequencyChanges/cloudbuild.yaml"
 -'  1  0  ~/FrequencyChanges/cloudbuild.yaml
@@ -122,12 +152,30 @@
 |4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
 -'  1  0  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  0  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  0  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  0  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  0  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  0  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,0,1634637093,"~/FrequencyChanges/cloudbuild.yaml"
+-'  3  10  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,3,10,1634637091,"~/FrequencyChanges/cloudbuild.yaml"
+-'  3  10  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,3,10,1634637091,"~/FrequencyChanges/cloudbuild.yaml"
 -'  3  10  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,3,10,1634637091,"~/FrequencyChanges/cloudbuild.yaml"
 -'  3  10  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,3,10,1634637091,"~/FrequencyChanges/cloudbuild.yaml"
 -'  1  0  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,1,0,1634637064,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  0  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,0,1634637064,"~/FrequencyChanges/cloudbuild.yaml"
+-'  1  5  ~/FrequencyChanges/cloudbuild.yaml
+|4,39,1,5,1634637059,"~/FrequencyChanges/cloudbuild.yaml"
 -'  1  5  ~/FrequencyChanges/cloudbuild.yaml
 |4,39,1,5,1634637059,"~/FrequencyChanges/cloudbuild.yaml"
 -'  29  16  ~/FrequencyChanges/Dockerfile
@@ -238,56 +286,16 @@
 |4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
 -'  29  16  ~/FrequencyChanges/Dockerfile
 |4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
--'  29  16  ~/FrequencyChanges/Dockerfile
-|4,39,29,16,1634532873,"~/FrequencyChanges/Dockerfile"
 
 # History of marks within files (newest to oldest):
+
+> ~/.gitignore
+	*	1634638211	0
+	"	94	7
+	^	94	8
+	.	95	0
+	+	75	0
+	+	95	0
 
 > ~/FrequencyChanges/cloudbuild.yaml
 	*	1634637609	0
