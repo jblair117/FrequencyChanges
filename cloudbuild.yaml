@@ -1,13 +1,13 @@
 steps:
 # Build the container image
-- name: 'asia.gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/process-mining-328711/process-mining', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia.gcr.io/process-mining-328711/process-mining', '.']
 # Push the container image to Container Registry
-- name: 'asia.gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/process-mining-328711/process-mining']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'asia.gcr.io/process-mining-328711/process-mining']
 # Deploy container image to Cloud Run
-- name: 'asia.gcr.io/google.com/cloudsdktool/cloud-sdk'
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'process-mining', '--image', 'gcr.io/process-mining-328711/process-mining', '--region', 'australia-southeast1']
+  args: ['run', 'deploy', 'process-mining', '--image', 'asia.gcr.io/process-mining-328711/process-mining', '--region', 'australia-southeast1']
 images:
 - asia.gcr.io/process-mining-328711/process-mining
