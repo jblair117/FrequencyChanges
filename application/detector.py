@@ -92,7 +92,7 @@ def save_petri_net(gviz):
     pylab.savefig(filename)
 
 def save_preview_petri_net(gviz,image_name):
-    filename = "app/static/image/" + str(image_name) + ".png"
+    filename = "application/static/image/" + str(image_name) + ".png"
     pn_visualizer.save(gviz, filename)
 """
 Yang's code starts here again
@@ -349,17 +349,17 @@ def generate_input(path, files):
     places, transitions, arcs = get_attributes_of_petri_net(net)
 
     gviz = draw_petri_net(net, initial_marking, final_marking, places, arcs)
-    pn_visualizer.save(gviz, "app/static/image/petri_net.png")
+    pn_visualizer.save(gviz, "application/static/image/petri_net.png")
 
     return places
 
 
 def save_visual(gviz):
-    pn_visualizer.save(gviz, "app/static/image/petri_net.png")
+    pn_visualizer.save(gviz, "application/static/image/petri_net.png")
 
 def save_result(choice_sequence, result):
     rpt.display(choice_sequence, result)
-    plt.savefig("app/static/image/results.png")
+    plt.savefig("application/static/image/results.png")
     # plt.show()
 
 def url_to_set(url):
