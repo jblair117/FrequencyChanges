@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pnml>
+  <net type="http://www.yasper.org/specs/epnml-1.1" id="do26">
+    <toolspecific tool="Yasper" version="1.2.4020.34351">
+      <roles xmlns="http://www.yasper.org/specs/epnml-1.1/toolspec" />
+    </toolspecific>
+    <transition id="tr5">
+      <name>
+        <text>Passenger gets boarding pass</text>
+      </name>
+      <graphics>
+        <position x="384" y="78" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr9">
+      <name>
+        <text>Passenger books ticket online</text>
+      </name>
+      <graphics>
+        <position x="96" y="200" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr1">
+      <name>
+        <text>Passenger checks in on time</text>
+      </name>
+      <graphics>
+        <position x="226" y="78" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr12">
+      <name>
+        <text>Passenger gets bumped to next flight (possible fee)</text>
+      </name>
+      <graphics>
+        <position x="312" y="200" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr3">
+      <name>
+        <text>Passenger misses check-in cut-off</text>
+      </name>
+      <graphics>
+        <position x="237" y="295" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr4">
+      <name>
+        <text>Passenger's ticket is cancelled (possible refund)</text>
+      </name>
+      <graphics>
+        <position x="550" y="294" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <place id="pl10">
+      <graphics>
+        <position x="23" y="200" />
+        <dimension x="20" y="20" />
+      </graphics>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    <place id="pl1">
+      <graphics>
+        <position x="161" y="201" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl3">
+      <graphics>
+        <position x="308" y="78" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl11">
+      <graphics>
+        <position x="552" y="76" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl4">
+      <graphics>
+        <position x="313" y="293" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <arc id="a1" source="pl10" target="tr9" />
+    <arc id="a2" source="tr9" target="pl1" />
+    <arc id="a3" source="pl1" target="tr1" />
+    <arc id="a4" source="tr1" target="pl3" />
+    <arc id="a6" source="pl3" target="tr5" />
+    <arc id="a9" source="pl1" target="tr3" />
+    <arc id="a10" source="tr5" target="pl11" />
+    <arc id="a13" source="tr3" target="pl4" />
+    <arc id="a14" source="pl4" target="tr12" />
+    <arc id="a15" source="pl4" target="tr4" />
+    <arc id="a16" source="tr12" target="pl1" />
+    <arc id="a17" source="tr4" target="pl10">
+      <graphics>
+        <position x="33" y="396" />
+      </graphics>
+    </arc>
+  </net>
+</pnml>

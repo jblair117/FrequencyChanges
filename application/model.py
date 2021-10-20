@@ -10,6 +10,9 @@ def get_paths(upload_folder, files):
 def get_log(log_path):
     return detector.get_log(log_path)
 
+def get_marking_name(marking):
+    return detector.get_marking_name(marking)
+    
 def get_petri_net(net_path):
     return detector.get_petri_net(net_path)
 

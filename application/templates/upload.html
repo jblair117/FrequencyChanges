@@ -8,6 +8,7 @@
       <h1>{{message}}</h1>
       <form action= "https://process-mining-zkathz2wkq-ts.a.run.app/" method = "POST"
           enctype = "multipart/form-data">
+          <!-- <form action= "http://localhost:5000" method = "POST"> -->
               <input type = "file" name = "file" multiple>
               <input type="submit" name="submit" onclick="$('#loading').show();">
               <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />Loading!</div>

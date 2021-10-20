@@ -46,6 +46,7 @@ def select_places():
     log = model.get_log(log_path)
     net, initial_marking, final_marking = model.get_petri_net(net_path)
     p, transitions, arcs = model.get_attributes_of_petri_net(net)
+    final_marking_name = model.get_marking_name(final_marking)
 
     if request.method == 'POST':
         str_select_places = request.form['select_places'] 
@@ -68,7 +69,7 @@ def select_places():
             return redirect(url_for('show_results'))
 
     elif request.method == 'GET':
-        return render_template('petri_net.html', places=p, message = "Please Select Places")
+        return render_template('petri_net.html', places=p, final_marking_name= final_marking_name, message = "Please Select Places")
 
 @app.route('/results', methods = ['GET'])
 def show_results():

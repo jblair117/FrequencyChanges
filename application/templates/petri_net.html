@@ -2,14 +2,20 @@
 <html>
    <head>
        <meta charset="utf-8">
+       <meta http-equiv="pragma" content="no-cache" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <link href="../static/css/style.css" rel="stylesheet">
        <script type="text/javascript"> 
        //checking this part 
         var places_var = '{{ places }}'
+        //modified
+        var final_marking_name = '{{ final_marking_name }}'
+        // alert(final_marking_name);
+        var generate_button = false;
         function changeImage(img_name)
         {   
             var process_img = img_name.replace(" ","");
+            console.log(process_img);
             var img = document.getElementById("image");
             img.src="../static/image/" + process_img + ".png";
         }
@@ -20,38 +26,58 @@
             const places_list = tmp.split(",");
             var img = document.getElementById("image");
             img.src="../static/image/petri_net.png";
-
+            
+            // alert(places_list);
             for(var i=0; i < places_list.length; i++){
                 var com_elem = 'btn' + places_list[i];
                 // alert(com_elem);
                 var elem = document.getElementById(com_elem);
                 elem.parentNode.removeChild(elem);
             }
+            generate_button = false;
         }
 
         function myFunc(places_var) {
-            const tmp = places_var.replace("{","").replace("}","");
-            const places_list = tmp.split(",");
+            if (generate_button == false){
+                const tmp = places_var.replace("{","").replace("}","");
+                const places_list = tmp.split(",");
+                // alert(final_marking_name);
 
-            for(var i=0; i < places_list.length; i++)
-            (function () {
-                var btn = document.createElement("BUTTON");
-                var image_name = places_list[i];
-                // alert("img_reset "+ image_name);
-                btn.id = 'btn' + places_list[i];
-                btn.innerHTML = places_list[i];
-                btn.setAttribute("value", places_list[i]);
-                btn.setAttribute("text",places_list[i]);
-                btn.addEventListener("click", function() {
-                    changeImage(image_name);
-                    }   
-                );
-                btn.style.fontSize = "14px";
-                btn.style.backgroundColor = '#4CAF50';
-                let buttonDiv = document.getElementById("buttons");
-                buttonDiv.appendChild(btn);
-            })();
+                // alert(places_list)
+                for(var i=0; i < places_list.length; i++)
+                (function () {
+                    var btn = document.createElement("BUTTON");
+                    var image_name = places_list[i];
+                    btn.id = 'btn' + places_list[i];
+                    btn.innerHTML = places_list[i];
+                    btn.setAttribute("value", places_list[i]);
+                    btn.setAttribute("text",places_list[i]);
+                    btn.style.fontSize = "14px";
+                    btn.style.backgroundColor = '#4CAF50';
+                    let buttonDiv = document.getElementById("buttons");
+                    buttonDiv.appendChild(btn);
+                    generate_button = true;
+                    if (String(places_list[i]).trim() != String(final_marking_name).trim()){
+                        btn.addEventListener("click", function() {
+                            changeImage(image_name);
+                            }   
+                        );
+                    }
+                    else{
+                        btn.addEventListener("click", function() {
+                            // changeImage("no_path")
+                            alert("This is the final marking. No path indicated.")
+                            }   
+                        );
+                    }
+                })();
+            }
         }
+
+        function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }
+
 
         function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
@@ -77,7 +103,8 @@
            <p>These are interesting places: {{places}}</p>
            <p>Please use comma "," to seperate between places</p>
            <!-- loading might need to added here -->
-           <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST">
+           <!-- <form action = "http://localhost:5000/select_places" method="POST"> -->
+            <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST">
                 <input type="text" id="select_places" name="select_places"><br><br>
                 <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
                 Model: <select name="modelSelect" id="modelSelect">
