@@ -41,8 +41,10 @@
 
         function myFunc(places_var) {
             if (generate_button == false){
+                // console.log(places_var);
                 const tmp = places_var.replace("{","").replace("}","");
-                const places_list = tmp.split(",");
+                let places_list = tmp.split(", ").sort();
+                // console.log(places_list);
                 // alert(final_marking_name);
 
                 // alert(places_list)
@@ -102,7 +104,7 @@
 
             <!-- <h3>Here is Preview</h3> -->
             <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-            <p style = "font-size: 120%; line-height: 120%;">click a button below to see the transitions for the named place (valid places only)!
+            <p style = "font-size: 120%; line-height: 120%;">click a button below to see the transitions for the named place (invalid places are greyed out)!
             </p>
             <button id="preview" onclick="myFunc('{{ places }}');">Preview </button>
             <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
