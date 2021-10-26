@@ -38,7 +38,7 @@ def index():
             return render_template('upload.html', message = "Invalid file type! Please Upload .xes and .pnml files")
 
     elif request.method == 'GET':
-        return render_template('upload.html', message = "Please Upload .xes and .pnml files")
+        return render_template('upload.html', message = "Process Mining <br> Branching Frequency Changes")
 
 @app.route('/select_places', methods = ['GET', 'POST'])
 def select_places():
