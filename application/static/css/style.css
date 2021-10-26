@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#rectangle-container {
+#body-container {
     text-align: center;
     vertical-align: top;
 }
@@ -31,18 +31,27 @@
     color: white;
 }
 
-#upload-body {
+#upload-div {
     position: relative;
-    top: 230px;
+    top: 25vh;
+    height: 50vh;
     display: inline-block;
     font-size: 160%;
+    /*
+     * if every confused about the divs, give them background colour
+     * background-color: #4CAF50;
+     */
 }
 
 #upload-submit {
     position: relative;
-    top: 70px;
     display: inline-block;
+    top: 10vh;
     font-size: 60%;
+    /*
+     * if every confused about the divs, give them background colour
+     * background-color: #D58092;
+     */
 }
 
 .button {

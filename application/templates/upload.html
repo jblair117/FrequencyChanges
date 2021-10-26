@@ -5,34 +5,28 @@
     <link href='https://fonts.googleapis.com/css?family=Alegreya Sans SC' rel='stylesheet'>
 </head>
 <html>
-    <body>
-        <div id = "rectangle-container">
-            <div id = "header">
-                <h1>Process Mining Visual Analytic Tool</h1>
+    <body id = "body-container">
+        <div id = "header">
+            <h1>Process Mining Visual Analytic Tool</h1>
+        </div>
+        <div id = "upload-div">
+            <h1>Model Enhancer</h1>
+            <p style="font-style: italic">(using the power of branching frequency changes!)</p>
+            <div id = "upload-submit">
+                <p>Please upload your .pnml and .xes files for processing</p>
+                <!-- <form action= "https://process-mining-zkathz2wkq-ts.a.run.app/" method = "POST"
+                enctype = "multipart/form-data"> -->
+                <form action= "http://localhost:5000" method = "POST" enctype = "multipart/form-data">
+                    <input type="file" name="file" multiple>
+                    <input type="submit" class="button" name="submit" onclick="$('#loading').show();">
+                    <div id="loading" style="display:none;">
+                        <img src="../static/image/loading.gif" alt="" />Loading!
+                    </div>
+                </form>
             </div>
-
-            <div id = "upload-body">
-                <h1>Model Enhancer</h1>
-                <p>(using the power of branching frequency changes!)</p>
-
-                <div id = "upload-submit">
-                    <p>Please upload your .pnml and .xes files for processing</p>
-                    <!-- <form action= "https://process-mining-zkathz2wkq-ts.a.run.app/" method = "POST"
-                    enctype = "multipart/form-data"> -->
-                    <form action= "http://localhost:5000" method = "POST" enctype = "multipart/form-data">
-                        <input type="file" name="file" multiple>
-                        <input type="submit" class="button" name="submit" onclick="$('#loading').show();">
-                        <div id="loading" style="display:none;">
-                            <img src="../static/image/loading.gif" alt="" />Loading!
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div id = "footer">
-                <h1>© 2021 Prof. Simon Poon's Project Group</h1>
-            </div>
-            <!-- p class = "upload-statement">Please upload your .pnml and .xes file here</p> -->
+        </div>
+        <div id = "footer">
+            <h1>© 2021 Prof. Simon Poon's Project Group</h1>
         </div>
    </body>
 </html>
