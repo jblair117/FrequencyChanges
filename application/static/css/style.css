@@ -48,6 +48,7 @@
     display: inline-block;
     top: 10vh;
     font-size: 60%;
+    /* overflow: hidden; */
     /*
      * if every confused about the divs, give them background colour
      * background-color: #D58092;
@@ -65,6 +66,8 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  position: relative;
+  left: 20px;
 }
 
 .loader {
@@ -93,11 +96,22 @@
 div#loading {
   /* position: relative;
   left: 30px; */
-  align-items: center;
+  position: absolute;
+  right: -5vw;
+  /* align-items: center; */
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  /* padding: 15px 32px; */
+  /* margin: 4px 2px; */
+  vertical-align: right;
+  /* display: none; */
+  /* width: 50px; */
+  /* align-items: center;
   width: 100px;
   height: 100px;
   display: none;
-  text-align: center;
+  text-align: center; */
   }
 
 span {
@@ -109,3 +123,33 @@ span {
     padding-left: 20px; 
     color: rgba(207, 10, 10, 0.815);
 }
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  position: relative;
+  left: -20px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color:#089cfc;
+  color: white;
+}
+
+/* input#file {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  padding: 50px 0px;
+  height: 20px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #e4e4e4;
+  border-radius: 20px;
+  background-size: 40px 40px;
+} */
