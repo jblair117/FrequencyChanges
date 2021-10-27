@@ -21,23 +21,47 @@
                  style = "border: 3px solid #0e72ab;"
                  alt="result">
             <br><br>
-            <h2>Concept Drifts</h2>
-            <table class = "styled-table">
-                <tr style = "background-color: #0e72ab; color: #ffffff">
-                    <th>Point number</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                </tr>
-                {% for instance in collection %}
-                    <tr>
-                        <td>{{instance[0]}}</td>
-                        <td>{{instance[1]}}</td>
-                        <td>{{instance[2]}}</td>
-                    </tr>
-                {% endfor %}
-            </table>
+            <div class = "row">
+                <div class = "column">
+                    <h2>Concept Drifts</h2>
+                    <table class = "styled-table">
+                        <tr style = "background-color: #0e72ab; color: #ffffff">
+                            <th>Point number</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                        {% for instance in collection %}
+                            <tr>
+                                <td>{{instance[0]}}</td>
+                                <td>{{instance[1]}}</td>
+                                <td>{{instance[2]}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+                {% if identities != "" %}
+                    <div class = "column">
+                        <h2>Frequencies</h2>
+                        <table class = "styled-table">
+                            <tr style = "background-color: #0e72ab; color: #ffffff">
+                                {% for instance in identities %}
+                                    <th>{{instance}}</th>
+                                {% endfor %}
+                            </tr>
+                            {% for instance in prototype_results %}
+                                <tr>
+                                    {% for freq in instance %}
+                                        <td>{{freq}}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-        Prototype results: {{ prototype_results }}
+
         <div id = "footer">
             <h1>© 2021 Prof. Simon Poon's Project Group</h1>
         </div>

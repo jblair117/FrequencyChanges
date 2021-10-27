@@ -300,10 +300,12 @@ def get_prototype_prints_generalise(choice_sequence, result, net, place):
         values[val - 1] += 1
 
     total = result[0]
-    adder = []
-    for i in values:
-        adder.append(str(i / total))
-    results.append(adder)
+    print("result[0] is", total)
+    if total > 0:
+        adder = []
+        for i in values:
+            adder.append(str(i / total))
+        results.append(adder)
 
     values = [0 for _ in range(num)]
     for i in range(result[0], result[1]):
@@ -311,10 +313,12 @@ def get_prototype_prints_generalise(choice_sequence, result, net, place):
         values[val - 1] += 1
 
     total = result[1] - result[0]
-    adder = []
-    for i in values:
-        adder.append(str(i / total))
-    results.append(adder)
+    print("result[1] - result[0] is", total)
+    if total > 0:
+        adder = []
+        for i in values:
+            adder.append(str(i / total))
+        results.append(adder)
 
     values = [0 for _ in range(num)]
     for i in range(result[1], len(choice_sequence)):
@@ -322,10 +326,12 @@ def get_prototype_prints_generalise(choice_sequence, result, net, place):
         values[val - 1] += 1
 
     total = len(choice_sequence) - result[1]
-    adder = []
-    for i in values:
-        adder.append(str(i / total))
-    results.append(adder)
+    print("len(choice_sequence) - result[1] is", total)
+    if total > 0:
+        adder = []
+        for i in values:
+            adder.append(str(i / total))
+        results.append(adder)
 
     return results
 

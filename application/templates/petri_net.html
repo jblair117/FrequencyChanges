@@ -51,10 +51,34 @@
         function myFunc(places_var, invalid_places_var) {
             if (generate_button == false){
                 const tmp_invalid = invalid_places_var.replace("[","").replace("]","");
-                let invalid_places_list = tmp_invalid.split(", ").sort();
+                let invalid_places_list = tmp_invalid.split(", ")
+                    /*.sort(function(a, b){
+                    if(a.length < b.length) {
+                        return -1;
+                    }
+                    if(a < b) {
+                        return -1;
+                    }
+                    if(a === b) {
+                        return 0;
+                    }
+                    else return 1;
+                });
+                */
                 // console.log(places_var);
                 const tmp = places_var.replace("{","").replace("}","");
-                let places_list = tmp.split(", ").sort();
+                let places_list = tmp.split(", ").sort(function(a, b){
+                    if(a.length < b.length) {
+                        return -1;
+                    }
+                    if(a < b) {
+                        return -1;
+                    }
+                    if(a == b) {
+                        return 0;
+                    }
+                    else return 1;
+                });
                 // console.log(places_list);
                 // alert(final_marking_name);
                 for (var i = 0; i < places_list.length; i++){
@@ -66,20 +90,21 @@
                         btn.innerHTML = places_list[i];
                         btn.setAttribute("value", places_list[i]);
                         btn.setAttribute("text",places_list[i]);
-                        btn.style.fontSize = "14px";
+                        btn.style.fontSize = "18px";
                         let buttonDiv = document.getElementById("buttons");
                         buttonDiv.appendChild(btn);
                         generate_button = true;
                         if (testInvalid(String(places_list[i]).trim(),invalid_places_list)){
-                            btn.style.backgroundColor = '#f3f3f3';
+                            btn.style.backgroundColor = '';
+                            btn.style.color = '#FF0000'
                             btn.addEventListener("click", function() {
-                                alert("This is the invalid path. No path indicated.")
+                                alert("This is an invalid place as it does not have multiple exclusive choices.")
                             }   
                         );
 
                         }
                         else{
-                            btn.style.backgroundColor = '#003c5e';
+                            btn.style.backgroundColor = '#4CAF50';
                                 btn.addEventListener("click", function() {
                                     changeImage(image_name);
                                     }
@@ -117,7 +142,7 @@
 
             <!-- <h3>Here is Preview</h3> -->
             <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-            <p>Click a button below to see the transitions for the named place (invalid places are greyed out)!
+            <p>Click a button below to see the transitions for the named place <b>(only valid places are in green)!</b>
             </p>
             <button id="preview" onclick="myFunc('{{ places }}', '{{invalid_places}}');">Preview </button>
             <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
@@ -126,7 +151,7 @@
 
             <!-- <div id = "sliders">
             </div> -->
-            <p>Type below a valid place name you're interested in!</p>
+            <p>Type below a <b>valid</b> place name you're interested in!</p>
                 <!-- loading might need to added here -->
                 <form action = "http://localhost:5000/select_places" method="POST">
                     <!-- <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST"> -->
@@ -143,7 +168,7 @@
                     <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output>
                     <br><br>
                     <input type="submit" class="submit" value="Submit" onclick="$('#loading2').show();">
-                    <div id="loading2" style="display:none;"><img src="../static/image/loading.gif" alt="" />    Give me ~8 minutes!</div>
+                    <div id="loading2" style="display:none;"><img src="../static/image/loading.gif" alt="" />May take a few minutes!</div>
                 </form>
             </div>
         </div>

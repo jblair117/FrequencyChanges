@@ -68,7 +68,7 @@ def select_places():
         global invalid
         valid, invalid = model.valid_places(p,select_places)
         if len(invalid) > 0 and len(valid) == 0:
-            return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "The entered places are invalid. Please Try Again.")
+            return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "The place you enetered is invalid. Please Try Again.")
         if len(valid) > 1:
             return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "You entered more than one place, please enter only one.")
         if len(valid) == 1:
@@ -103,9 +103,17 @@ def show_results():
             tmp.append(split_m[9])
             collection.append(tmp)
 
+        identities = []
+        if(len(prototype_results) != 0):
+            for i in range(len(prototype_results[0])):
+                identities.append(f"Transition {i+1}")
+        else:
+            identities = ''
+
         return render_template("results.html",
                                place=place,
                                collection=collection,
                                prototype_results=prototype_results,
+                               identities=identities,
                                select_pen=select_pen,
                                select_model=select_model)
