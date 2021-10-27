@@ -68,11 +68,9 @@ def select_places():
         global invalid
         valid, invalid = model.valid_places(p,select_places)
         if len(invalid) > 0 and len(valid) == 0:
-            return render_template('petri_net.html', places=model.redo_places(p), message = "The entered places are invalid. Please Try Again.")
-
+            return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "The entered places are invalid. Please Try Again.")
         if len(valid) > 1:
-            return render_template('petri_net.html', places=model.redo_places(p), message = "You entered more than one place, please enter only one.")
-
+            return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "You entered more than one place, please enter only one.")
         if len(valid) == 1:
             global return_results
             results, sequences, choice_sequences = model.select_places_calculation(log, net, initial_marking, final_marking, p, valid, select_pen,select_model)
