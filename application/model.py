@@ -83,3 +83,6 @@ def get_result_fig(choice_sequences, results):
 
 def redo_places(places):
     return re.sub('[{},]', '', str(places)).replace(' ', ',')
+
+def get_prototype_results(choice_sequence, result, net, place):
+    return detector.get_prototype_prints_generalise(choice_sequence, result, net, place)
