@@ -84,7 +84,7 @@ def draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, pr
 
     gviz = graphviz_visualization(net, image_format='png', initial_marking=None,
     final_marking=None, decorations=all_deco, debug=False, set_rankdir=None)
-    return gviz
+    return gviz, count
 
 def save_petri_net(gviz):
     filename = 'saved_drawings/petri_net'
@@ -432,8 +432,3 @@ def verify_files(files, upload_folder):
 
 def get_places(net):
     return net.places
-
-
-
-
-

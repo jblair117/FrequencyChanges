@@ -8,6 +8,10 @@ global prototype_results
 global invalid
 global select_pen
 global select_model
+# global valid_places
+global invalid_places
+# valid_places = []
+invalid_places = []
 return_results = []
 invalid = []
 select_pen = 0
@@ -22,6 +26,7 @@ def index():
         #check no file uploaad
         if files[0].filename == "":
             return render_template('upload.html', message ='No selected file. Please Upload .xes and .pnml files.')
+        
         valid_count = model.verify_files(files, app.config['UPLOAD_FOLDER'])
 
         if(valid_count == 2):
@@ -30,14 +35,18 @@ def index():
             places, transitions, arcs = model.get_attributes_of_petri_net(net)
             gviz = model.draw_petri_net(net, initial_marking, final_marking, places, arcs)
             model.save_visual(gviz)
-            model.draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs)
+            # print("hi")
+            # global valid_places
+            global invalid_places
+            invalid_places = model.draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs)
+            # print("hi", valid_places,invalid_places)
             places_in_url = model.redo_places(places)
             return redirect(url_for('select_places'))
         else:
             return render_template('upload.html', message = "Invalid file type! Please Upload .xes and .pnml files")
 
     elif request.method == 'GET':
-        return render_template('upload.html', message = "Process Mining <br> Branching Frequency Changes")
+        return render_template('upload.html', message = "")
 
 @app.route('/select_places', methods = ['GET', 'POST'])
 def select_places():
@@ -54,14 +63,16 @@ def select_places():
         global select_model
         select_pen = int(request.form['PenInputName'])
         select_model = str(request.form['modelSelect'])
-        print(select_pen, type(select_pen))
-        print(select_model, type(select_model))
+        # print(select_pen, type(select_pen))
+        # print(select_model, type(select_model))
         global invalid
         valid, invalid = model.valid_places(p,select_places)
         if len(invalid) > 0 and len(valid) == 0:
             return render_template('petri_net.html', places=model.redo_places(p), message = "The entered places are invalid. Please Try Again.")
+
         if len(valid) > 1:
             return render_template('petri_net.html', places=model.redo_places(p), message = "You entered more than one place, please enter only one.")
+
         if len(valid) == 1:
             global return_results
             results, sequences, choice_sequences = model.select_places_calculation(log, net, initial_marking, final_marking, p, valid, select_pen,select_model)
@@ -72,7 +83,9 @@ def select_places():
             return redirect(url_for('show_results'))
 
     elif request.method == 'GET':
-        return render_template('petri_net.html', places=p, final_marking_name= final_marking_name, message = "Please Select Places")
+        # return render_template('petri_net.html', places=p, final_marking_name= final_marking_name, message = "Please Select Places")
+        print("second", p, invalid_places)
+        return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "")
 
 @app.route('/results', methods = ['GET'])
 def show_results():

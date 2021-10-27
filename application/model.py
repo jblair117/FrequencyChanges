@@ -23,9 +23,19 @@ def draw_petri_net(net, initial_marking, final_marking, places, arcs):
     return detector.draw_petri_net(net, initial_marking, final_marking, places, arcs)
 
 def draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs):
+    # valid_places = []
+    invalid_places = []
     for p in places:
-        tmp_gviz = detector.draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, p.name)
+        tmp_gviz, count = detector.draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, p.name)
         detector.save_preview_petri_net(tmp_gviz,p.name)
+        print(count)
+        if count <= 2:
+            invalid_places.append(p)
+        # else:
+        #     valid_places.append(p)
+    # print(valid_places,invalid_places)
+    return invalid_places
+
 
 def save_visual(gviz):
     detector.save_visual(gviz)
@@ -46,7 +56,7 @@ def valid_places(places,target_place_ids):
         transitions_before_place, transitions_after_place, transitions_before_place_id, transitions_after_place_id, transitions_after_labels = detector.get_interesting_place_dets(places, target_id)
         if transitions_before_place != None:
             valid_places[target_id] = [transitions_before_place, transitions_after_place, transitions_before_place_id, transitions_after_place_id, transitions_after_labels]
-            print("valid_place",valid_places,type(valid_places))
+            # print("valid_place",valid_places,type(valid_places))
         else:
             invalid_places.append(target_id)
     return valid_places, invalid_places

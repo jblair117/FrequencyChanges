@@ -9,7 +9,7 @@
         //checking this part
         var places_var = '{{ places }}'
         //modified
-        var final_marking_name = '{{ final_marking_name }}'
+        var invalid_places_var = '{{ invalid_places }}'
         // alert(final_marking_name);
         var generate_button = false;
         function changeImage(img_name)
@@ -39,44 +39,57 @@
         }
          */
 
-        function myFunc(places_var) {
+        function testInvalid(single_place, invalid_places_var){
+            for(var i = 0; i < invalid_places_var.length; i++ ){
+                if(invalid_places_var[i] == single_place){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function myFunc(places_var, invalid_places_var) {
             if (generate_button == false){
+                const tmp_invalid = invalid_places_var.replace("[","").replace("]","");
+                let invalid_places_list = tmp_invalid.split(", ").sort();
                 // console.log(places_var);
                 const tmp = places_var.replace("{","").replace("}","");
                 let places_list = tmp.split(", ").sort();
                 // console.log(places_list);
                 // alert(final_marking_name);
+                for (var i = 0; i < places_list.length; i++){
+                    // alert(places_list)
+                    (function () {
+                        var btn = document.createElement("BUTTON");
+                        var image_name = places_list[i];
+                        btn.id = 'btn' + places_list[i];
+                        btn.innerHTML = places_list[i];
+                        btn.setAttribute("value", places_list[i]);
+                        btn.setAttribute("text",places_list[i]);
+                        btn.style.fontSize = "14px";
+                        let buttonDiv = document.getElementById("buttons");
+                        buttonDiv.appendChild(btn);
+                        generate_button = true;
+                        if (testInvalid(String(places_list[i]).trim(),invalid_places_list)){
+                            btn.style.backgroundColor = '#f3f3f3';
+                            btn.addEventListener("click", function() {
+                                alert("This is the invalid path. No path indicated.")
+                            }   
+                        );
 
-                // alert(places_list)
-                for(var i=0; i < places_list.length; i++)
-                (function () {
-                    var btn = document.createElement("BUTTON");
-                    var image_name = places_list[i];
-                    btn.id = 'btn' + places_list[i];
-                    btn.innerHTML = places_list[i];
-                    btn.setAttribute("value", places_list[i]);
-                    btn.setAttribute("text",places_list[i]);
-                    btn.style.fontSize = "22px";
-                    btn.style.backgroundColor = '#4CAF50';
-                    let buttonDiv = document.getElementById("buttons");
-                    buttonDiv.appendChild(btn);
-                    generate_button = true;
-                    if (String(places_list[i]).trim() != String(final_marking_name).trim()){
-                        btn.addEventListener("click", function() {
-                            changeImage(image_name);
-                            }   
-                        );
-                    }
-                    else{
-                        btn.addEventListener("click", function() {
-                            // changeImage("no_path")
-                            alert("This is the final marking. No path indicated.")
-                            }   
-                        );
-                    }
-                })();
+                        }
+                        else{
+                            btn.style.backgroundColor = '#003c5e';
+                                btn.addEventListener("click", function() {
+                                    changeImage(image_name);
+                                    }
+                                );
+                        }
+                    })();
+                }
             }
-        }
+            }
+            
 
         function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
@@ -104,20 +117,20 @@
 
             <!-- <h3>Here is Preview</h3> -->
             <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-            <p style = "font-size: 120%; line-height: 120%;">Click a button below to see the transitions for the named place (invalid places are greyed out)!
+            <p>Click a button below to see the transitions for the named place (invalid places are greyed out)!
             </p>
-            <button id="preview" onclick="myFunc('{{ places }}');">Preview </button>
+            <button id="preview" onclick="myFunc('{{ places }}', '{{invalid_places}}');">Preview </button>
             <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
 
             <div id="buttons"></div>
 
             <!-- <div id = "sliders">
             </div> -->
-            <p style = "font-size: 120%; line-height: 120%;">Type below a valid place name you're interested in!</p>
+            <p>Type below a valid place name you're interested in!</p>
                 <!-- loading might need to added here -->
                 <form action = "http://localhost:5000/select_places" method="POST">
                     <!-- <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST"> -->
-                    <input type="text" id="select_places" name="select_places" size="1%" maxlength="2">
+                    <input type="text" id="select_places" name="select_places" size="1%" maxlength="4">
                     <br><br>
                     <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
                     Model: <select name="modelSelect" id="modelSelect">
@@ -129,8 +142,8 @@
                     Penalty value: <input type="range"  style="display: inline;" name="PenInputName" id="PenInputId" value="5" min="1" max="10" oninput="PenOutputId.value = PenInputId.value">
                     <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output>
                     <br><br>
-                    <input type="submit" class="submit" value="Submit" onclick="$('#loading').show();">
-                    <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />    Give me ~8 minutes!</div>
+                    <input type="submit" class="submit" value="Submit" onclick="$('#loading2').show();">
+                    <div id="loading2" style="display:none;"><img src="../static/image/loading.gif" alt="" />    Give me ~8 minutes!</div>
                 </form>
             </div>
         </div>
@@ -139,3 +152,10 @@
         </div>
     </body>
 </html>
+
+<script>
+    var message = "{{ message }}";
+    if (message != ""){
+        alert(message);
+    }
+</script>
