@@ -104,7 +104,7 @@
 
             <!-- <h3>Here is Preview</h3> -->
             <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-            <p style = "font-size: 120%; line-height: 120%;">click a button below to see the transitions for the named place (invalid places are greyed out)!
+            <p style = "font-size: 120%; line-height: 120%;">Click a button below to see the transitions for the named place (invalid places are greyed out)!
             </p>
             <button id="preview" onclick="myFunc('{{ places }}');">Preview </button>
             <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
@@ -113,13 +113,11 @@
 
             <!-- <div id = "sliders">
             </div> -->
-            <p style = "font-size: 120%; line-height: 120%;">type below any valid place names you're interested in <br>
-                use a comma "," to separate between each place (no spaces)! <br>
-            </p>
+            <p style = "font-size: 120%; line-height: 120%;">Type below a valid place name you're interested in!</p>
                 <!-- loading might need to added here -->
                 <form action = "http://localhost:5000/select_places" method="POST">
                     <!-- <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST"> -->
-                    <input type="text" id="select_places" name="select_places">
+                    <input type="text" id="select_places" name="select_places" size="1%" maxlength="2">
                     <br><br>
                     <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
                     Model: <select name="modelSelect" id="modelSelect">
@@ -132,7 +130,7 @@
                     <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output>
                     <br><br>
                     <input type="submit" class="submit" value="Submit" onclick="$('#loading').show();">
-                    <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />Loading!</div>
+                    <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />    Give me ~8 minutes!</div>
                 </form>
             </div>
         </div>

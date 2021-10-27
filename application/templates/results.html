@@ -2,33 +2,45 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <head>
-            <meta charset="utf-8">
-            <link href="../static/css/style.css" rel="stylesheet">
-        </head>
+        <link href="../static/css/style.css" rel="stylesheet">
     </head>
-    <body>
-        <h1>Results of Interesting Places</h1>
-        <img src="../static/image/results.png" alt="petri_net">
-        <div>
-            Model: {{select_model}}
-            Pen: {{select_pen}}
-        </div>
-        <div>
-            {% for invalid_place in invalid %}
-                <span>{{invalid_place}} is Invalid Places</span>
-            {% endfor %}
-        </div>
-        {% for place, messages in return_results.items() %}
-            <div>
-                <span> The interesting place: {{place}}</span>
-            </div>
 
-            <div>
-                {% for message in messages %}
-                    <p>{{message}}<p>
+    <body id = "body-wrapper">
+        <div id = "header">
+            <h1>Process Mining Visual Analytic Tool</h1>
+        </div>
+
+        <div id = "result-wrapper">
+            <h1>Results for Place: {{place}}</h1>
+            <p style = "font-size: 120%">
+                    <b>Model:</b> {{select_model}} <br>
+                    <b>Penalty value:</b> {{select_pen}}
+            </p>
+            <img src="../static/image/results.png"
+                 id="result"
+                 style = "border: 3px solid #0e72ab;"
+                 alt="result">
+            <br><br>
+            <h2>Concept Drifts</h2>
+            <table class = "styled-table">
+                <tr style = "background-color: #0e72ab; color: #ffffff">
+                    <th>Point number</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+                {% for instance in collection %}
+                    <tr>
+                        <td>{{instance[0]}}</td>
+                        <td>{{instance[1]}}</td>
+                        <td>{{instance[2]}}</td>
+                    </tr>
                 {% endfor %}
-            </div>
-        {% endfor %}
+            </table>
+        </div>
+
+        <div id = "footer">
+            <h1>© 2021 Prof. Simon Poon's Project Group</h1>
+        </div>
+
     </body>
 </html>
