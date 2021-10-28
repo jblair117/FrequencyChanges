@@ -25,7 +25,7 @@ def index():
 
         #check no file uploaad
         if files[0].filename == "":
-            return render_template('upload.html', message ='No selected file. Please Upload .xes and .pnml files.')
+            return render_template('upload.html', message ='No files uploaded. Please upload a .xes and .pnml file.')
         
         valid_count = model.verify_files(files, app.config['UPLOAD_FOLDER'])
 
@@ -43,7 +43,7 @@ def index():
             places_in_url = model.redo_places(places)
             return redirect(url_for('select_places'))
         else:
-            return render_template('upload.html', message = "Invalid file type! Please Upload .xes and .pnml files")
+            return render_template('upload.html', message = "Invalid file type! Please Upload a .xes and .pnml file.")
 
     elif request.method == 'GET':
         return render_template('upload.html', message = "")

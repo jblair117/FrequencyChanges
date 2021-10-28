@@ -98,13 +98,15 @@
                             btn.style.backgroundColor = '';
                             btn.style.color = '#FF0000'
                             btn.addEventListener("click", function() {
-                                alert("This is an invalid place as it does not have multiple exclusive choices.")
+                                changeImage(image_name);
+                                // alert("This is an invalid place as it does not have multiple exclusive choices.")
                             }   
                         );
 
                         }
                         else{
-                            btn.style.backgroundColor = '#4CAF50';
+                            btn.style.backgroundColor = '#018dfc';
+                            btn.style.color = '#FFFFFF'
                                 btn.addEventListener("click", function() {
                                     changeImage(image_name);
                                     }
@@ -142,7 +144,8 @@
 
             <!-- <h3>Here is Preview</h3> -->
             <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-            <p>Click a button below to see the transitions for the named place <b>(only valid places are in green)!</b>
+            <p>Click the "Preview" button!<br>After that, click a button below to see the exclusive choices for the named place.
+                <br> Note that we can only measure places with multiple exclusive choices which are shown by a <b>blue button.</b>
             </p>
             <button id="preview" onclick="myFunc('{{ places }}', '{{invalid_places}}');">Preview </button>
             <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
@@ -151,11 +154,12 @@
 
             <!-- <div id = "sliders">
             </div> -->
-            <p>Type below a <b>valid</b> place name you're interested in!</p>
+            <p>Type below a place name you're interested in!
+                <br> (it must be a place that has a <b>blue button</b> above)</p>
                 <!-- loading might need to added here -->
-                <!-- <form action = "http://localhost:5000/select_places" method="POST"> -->
-                <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST">
-                    <input type="text" id="select_places" name="select_places" size="1%" maxlength="4">
+                <form action = "http://localhost:5000/select_places" method="POST">
+                <!-- <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST"> -->
+                    <input type="text" id="select_places" name="select_places" size="4" maxlength="4">
                     <br><br>
                     <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
                     Model: <select name="modelSelect" id="modelSelect">
@@ -164,8 +168,8 @@
                                 <option value="l1">l1</option>
                                 <option value="l2">l2</option>
                             </select> &nbsp;
-                    Penalty value: <input type="range"  style="display: inline;" name="PenInputName" id="PenInputId" value="5" min="1" max="10" oninput="PenOutputId.value = PenInputId.value">
-                    <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output>
+                    Penalty value: <input type="range"  style="display: inline;" name="PenInputName" id="PenInputId" value="1" min="1" max="10" oninput="PenOutputId.value = PenInputId.value">
+                    <output name="PenOutputName" id="PenOutputId">1</output>
                     <br><br>
                     <input type="submit" class="submit" value="Submit" onclick="$('#loading2').show();">
                     <div id="loading2" style="display:none;"><img src="../static/image/loading.gif" alt="" />May take a few minutes!</div>
@@ -173,7 +177,7 @@
             </div>
         </div>
         <div id = "footer">
-            <h1>© 2021 Prof. Simon Poon's Project Group</h1>
+            <h1>© 2021 Prof. Simon Poon's ISYS3888 Project Group</h1>
         </div>
     </body>
 </html>
