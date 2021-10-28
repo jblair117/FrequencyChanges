@@ -10,6 +10,8 @@ global select_pen
 global select_model
 # global valid_places
 global invalid_places
+global start
+global end
 # valid_places = []
 invalid_places = []
 return_results = []
@@ -39,6 +41,7 @@ def index():
             # global valid_places
             global invalid_places
             invalid_places = model.draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs)
+            print("----------", invalid_places[0])
             # print("hi", valid_places,invalid_places)
             places_in_url = model.redo_places(places)
             return redirect(url_for('select_places'))
@@ -54,11 +57,41 @@ def select_places():
     log = model.get_log(log_path)
     net, initial_marking, final_marking = model.get_petri_net(net_path)
     p, transitions, arcs = model.get_attributes_of_petri_net(net)
-    final_marking_name = model.get_marking_name(final_marking)
+
+    global start
+    start = model.get_marking_name(initial_marking)
+    global end
+    end = model.get_marking_name(final_marking)
+
+    pf = f"{p}"
+    start_brace = "{"
+    end_brace = "}"
+    ps = pf.replace(f"{start_brace}{start}", "{START") \
+        .replace(f"{start_brace}{end}", "{END") \
+        .replace(f"{start}{end_brace}", "START}") \
+        .replace(f"{end}{end_brace}", "END}") \
+        .replace(f"{start},", "START,") \
+        .replace(f"{end},", "END,")
+
+    invalid_placesf = f"{invalid_places}"
+    invalid_placess = invalid_placesf.replace(f"[{start}", "[START") \
+        .replace(f"[{end}", "[END") \
+        .replace(f"{start}]", "START]") \
+        .replace(f"{end}]", "END]") \
+        .replace(f"{start},", "START,") \
+        .replace(f"{end},", "END,")
 
     if request.method == 'POST':
         str_select_places = request.form['select_places'] 
         select_places = str_select_places.split(",")
+        print("SELECT PLACES IS ---....----", select_places)
+
+        for i in range(len(select_places)):
+            if select_places[i] == "START":
+                select_places[i] = start
+            elif select_places[i] == "END":
+                select_places[i] = end
+
         global select_pen
         global select_model
         select_pen = int(request.form['PenInputName'])
@@ -66,11 +99,11 @@ def select_places():
         # print(select_pen, type(select_pen))
         # print(select_model, type(select_model))
         global invalid
-        valid, invalid = model.valid_places(p,select_places)
+        valid, invalid = model.valid_places(p, select_places)
         if len(invalid) > 0 and len(valid) == 0:
-            return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "The place you enetered is invalid. Please Try Again.")
+            return render_template('petri_net.html', places = ps, invalid_places = invalid_placess, message = "The place you enetered is invalid. Please Try Again.")
         if len(valid) > 1:
-            return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "You entered more than one place, please enter only one.")
+            return render_template('petri_net.html', places = ps, invalid_places = invalid_placess, message = "You entered more than one place, please enter only one.")
         if len(valid) == 1:
             global return_results
             results, sequences, choice_sequences = model.select_places_calculation(log, net, initial_marking, final_marking, p, valid, select_pen,select_model)
@@ -83,7 +116,12 @@ def select_places():
     elif request.method == 'GET':
         # return render_template('petri_net.html', places=p, final_marking_name= final_marking_name, message = "Please Select Places")
         print("second", p, invalid_places)
-        return render_template('petri_net.html', places = p, invalid_places = invalid_places, message = "")
+        print("p is", p)
+        print("invalid_places is", invalid_places)
+
+        print("new p is", ps)
+        print("new invalid_places is", invalid_placess)
+        return render_template('petri_net.html', places = ps, invalid_places = invalid_placess, message = "")
 
 @app.route('/results', methods = ['GET'])
 def show_results():
@@ -92,6 +130,8 @@ def show_results():
     else:
         places = list(return_results.keys())
         place = places[0]
+        print("THE FINAL PLACE TO SHOW IS", place)
+        print(type(place))
         message = return_results[place]
         collection = []
 
@@ -109,6 +149,13 @@ def show_results():
                 identities.append(f"Transition {i+1}")
         else:
             identities = ''
+
+        global start
+        global end
+        if place == start:
+            place = "START"
+        if place == end:
+            place = "END"
 
         return render_template("results.html",
                                place=place,

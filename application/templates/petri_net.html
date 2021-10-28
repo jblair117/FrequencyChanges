@@ -10,7 +10,6 @@
         var places_var = '{{ places }}'
         //modified
         var invalid_places_var = '{{ invalid_places }}'
-        // alert(final_marking_name);
         var generate_button = false;
         function changeImage(img_name)
         {   
@@ -19,25 +18,6 @@
             var img = document.getElementById("image");
             img.src="../static/image/" + process_img + ".png";
         }
-
-        /*
-        function changeOriImage()
-        {
-            const tmp = places_var.replace("{","").replace("}","");
-            const places_list = tmp.split(",");
-            var img = document.getElementById("image");
-            img.src="../static/image/petri_net.png";
-            
-            // alert(places_list);
-            for(var i=0; i < places_list.length; i++){
-                var com_elem = 'btn' + places_list[i];
-                // alert(com_elem);
-                var elem = document.getElementById(com_elem);
-                elem.parentNode.removeChild(elem);
-            }
-            generate_button = false;
-        }
-         */
 
         function testInvalid(single_place, invalid_places_var){
             for(var i = 0; i < invalid_places_var.length; i++ ){
@@ -52,31 +32,17 @@
             if (generate_button == false){
                 const tmp_invalid = invalid_places_var.replace("[","").replace("]","");
                 let invalid_places_list = tmp_invalid.split(", ")
-                    /*.sort(function(a, b){
-                    if(a.length < b.length) {
-                        return -1;
-                    }
-                    if(a < b) {
-                        return -1;
-                    }
-                    if(a === b) {
-                        return 0;
-                    }
-                    else return 1;
-                });
-                */
-                // console.log(places_var);
+
                 const tmp = places_var.replace("{","").replace("}","");
                 let places_list = tmp.split(", ").sort(function(a, b){
-                    if(a.length < b.length) {
-                        return -1;
-                    }
-                    if(a < b) {
-                        return -1;
-                    }
-                    if(a == b) {
-                        return 0;
-                    }
+                    if(a == "START") return -1;
+                    if(b == "START") return 1;
+                    if(a == "END") return 1;
+                    if(b == "END") return -1;
+
+                    if(a.length < b.length) return -1;
+                    if(a < b) return -1;
+                    if(a == b) return 0;
                     else return 1;
                 });
                 // console.log(places_list);
@@ -94,9 +60,18 @@
                         let buttonDiv = document.getElementById("buttons");
                         buttonDiv.appendChild(btn);
                         generate_button = true;
+                        btn.style.backgroundColor = '#018dfc';
+                            btn.style.color = '#FFFFFF'
+                            btn.addEventListener("click", function() {
+                                changeImage(image_name);
+                                // alert("This is an invalid place as it does not have multiple exclusive choices.")
+                            });
+                        /*
                         if (testInvalid(String(places_list[i]).trim(),invalid_places_list)){
-                            btn.style.backgroundColor = '';
-                            btn.style.color = '#FF0000'
+                            // btn.style.backgroundColor = '';
+                            // btn.style.color = '#FF0000'
+                            btn.style.backgroundColor = '#018dfc';
+                            btn.style.color = '#FFFFFF'
                             btn.addEventListener("click", function() {
                                 changeImage(image_name);
                                 // alert("This is an invalid place as it does not have multiple exclusive choices.")
@@ -112,6 +87,7 @@
                                     }
                                 );
                         }
+                        */
                     })();
                 }
             }
@@ -144,8 +120,8 @@
 
             <!-- <h3>Here is Preview</h3> -->
             <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-            <p>Click the "Preview" button!<br>After that, click a button below to see the exclusive choices for the named place.
-                <br> Note that we can only measure places with multiple exclusive choices which are shown by a <b>blue button.</b>
+            <p>Click the "Preview" button!
+                <br>After that, click a button below to see the exclusive choices for the named place.
             </p>
             <button id="preview" onclick="myFunc('{{ places }}', '{{invalid_places}}');">Preview </button>
             <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
@@ -154,12 +130,12 @@
 
             <!-- <div id = "sliders">
             </div> -->
-            <p>Type below a place name you're interested in!
-                <br> (it must be a place that has a <b>blue button</b> above)</p>
+            <p>Type below a place name you're interested in
+                <br> (it must be a place <b>in the diagram</b> that is <b>green</b>)!</p>
                 <!-- loading might need to added here -->
                 <form action = "http://localhost:5000/select_places" method="POST">
                 <!-- <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST"> -->
-                    <input type="text" id="select_places" name="select_places" size="4" maxlength="4">
+                    <input type="text" id="select_places" name="select_places" size="5" maxlength="5">
                     <br><br>
                     <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
                     Model: <select name="modelSelect" id="modelSelect">
