@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pnml>
+  <net type="http://www.yasper.org/specs/epnml-1.1" id="do26">
+    <toolspecific tool="Yasper" version="1.2.4020.34351">
+      <roles xmlns="http://www.yasper.org/specs/epnml-1.1/toolspec" />
+    </toolspecific>
+    <transition id="tr5">
+      <name>
+        <text>Kitchen makes the order</text>
+      </name>
+      <graphics>
+        <position x="371" y="129" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr8">
+      <name>
+        <text>Order is correct</text>
+      </name>
+      <graphics>
+        <position x="495" y="65" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr9">
+      <name>
+        <text>Cahsier inputs the order to the system</text>
+      </name>
+      <graphics>
+        <position x="106" y="130" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr1">
+      <name>
+        <text>Kitchen accpets the order</text>
+      </name>
+      <graphics>
+        <position x="229" y="129" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr11">
+      <name>
+        <text>Cashier hands over the receipt</text>
+      </name>
+      <graphics>
+        <position x="874" y="65" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr12">
+      <name>
+        <text>Order is wrong and sent back to Kitchen</text>
+      </name>
+      <graphics>
+        <position x="488" y="198" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr13">
+      <name>
+        <text>Cashier hands over the order to the customer</text>
+      </name>
+      <graphics>
+        <position x="612" y="65" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <place id="pl6">
+      <graphics>
+        <position x="434" y="131" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl7">
+      <graphics>
+        <position x="555" y="65" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl10">
+      <graphics>
+        <position x="33" y="132" />
+        <dimension x="20" y="20" />
+      </graphics>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    <place id="pl1">
+      <graphics>
+        <position x="158" y="127" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl3">
+      <graphics>
+        <position x="307" y="129" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl11">
+      <graphics>
+        <position x="949" y="65" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl12">
+      <graphics>
+        <position x="682" y="65" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <transition id="tr2">
+      <name>
+        <text>Customer makes the payment</text>
+      </name>
+      <graphics>
+        <position x="748" y="65" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <place id="pl2">
+      <graphics>
+        <position x="820" y="65" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <arc id="a3" source="tr5" target="pl6" />
+    <arc id="a5" source="pl10" target="tr9" />
+    <arc id="a7" source="tr9" target="pl1" />
+    <arc id="a8" source="pl1" target="tr1" />
+    <arc id="a11" source="tr1" target="pl3" />
+    <arc id="a12" source="pl3" target="tr5" />
+    <arc id="a15" source="pl6" target="tr8" />
+    <arc id="a16" source="tr8" target="pl7" />
+    <arc id="a21" source="tr11" target="pl11" />
+    <arc id="a26" source="pl6" target="tr12" />
+    <arc id="a27" source="pl7" target="tr13" />
+    <arc id="a28" source="tr13" target="pl12" />
+    <arc id="a29" source="pl12" target="tr2" />
+    <arc id="a30" source="tr2" target="pl2" />
+    <arc id="a31" source="pl2" target="tr11" />
+    <arc id="a32" source="tr12" target="pl3">
+      <graphics>
+        <position x="297" y="198" />
+      </graphics>
+    </arc>
+  </net>
+</pnml>

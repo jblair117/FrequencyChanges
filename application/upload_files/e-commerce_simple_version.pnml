@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pnml>
+  <net type="http://www.yasper.org/specs/epnml-1.1" id="do26">
+    <toolspecific tool="Yasper" version="1.2.4020.34351">
+      <roles xmlns="http://www.yasper.org/specs/epnml-1.1/toolspec" />
+    </toolspecific>
+    <transition id="tr5">
+      <name>
+        <text>checkout</text>
+      </name>
+      <graphics>
+        <position x="378" y="129" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr8">
+      <name>
+        <text>choose to pick up</text>
+      </name>
+      <graphics>
+        <position x="490" y="103" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr9">
+      <name>
+        <text>users views the product online</text>
+      </name>
+      <graphics>
+        <position x="106" y="130" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr1">
+      <name>
+        <text>add to the cart</text>
+      </name>
+      <graphics>
+        <position x="236" y="129" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr11">
+      <name>
+        <text>finish payment</text>
+      </name>
+      <graphics>
+        <position x="784" y="131" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr12">
+      <name>
+        <text>choose to mail</text>
+      </name>
+      <graphics>
+        <position x="487" y="158" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr13">
+      <name>
+        <text>choose credit card</text>
+      </name>
+      <graphics>
+        <position x="659" y="87" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <transition id="tr14">
+      <name>
+        <text>Choose afterpay</text>
+      </name>
+      <graphics>
+        <position x="660" y="192" />
+        <dimension x="32" y="32" />
+      </graphics>
+    </transition>
+    <place id="pl6">
+      <graphics>
+        <position x="441" y="131" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl7">
+      <name>
+        <text>choose for payment method</text>
+      </name>
+      <graphics>
+        <position x="570" y="133" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl10">
+      <graphics>
+        <position x="33" y="132" />
+        <dimension x="20" y="20" />
+      </graphics>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
+    </place>
+    <place id="pl1">
+      <graphics>
+        <position x="165" y="127" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl3">
+      <graphics>
+        <position x="314" y="129" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl11">
+      <graphics>
+        <position x="860" y="134" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <place id="pl12">
+      <graphics>
+        <position x="710" y="133" />
+        <dimension x="20" y="20" />
+      </graphics>
+    </place>
+    <arc id="a1" source="tr5" target="pl6" />
+    <arc id="a2" source="pl10" target="tr9" />
+    <arc id="a4" source="tr9" target="pl1" />
+    <arc id="a6" source="pl1" target="tr1" />
+    <arc id="a9" source="tr1" target="pl3" />
+    <arc id="a10" source="pl3" target="tr5" />
+    <arc id="a13" source="pl6" target="tr8" />
+    <arc id="a14" source="tr8" target="pl7" />
+    <arc id="a17" source="tr11" target="pl11" />
+    <arc id="a18" source="pl6" target="tr12" />
+    <arc id="a19" source="tr12" target="pl7" />
+    <arc id="a20" source="pl12" target="tr11" />
+    <arc id="a22" source="pl7" target="tr13" />
+    <arc id="a23" source="pl7" target="tr14" />
+    <arc id="a24" source="tr13" target="pl12" />
+    <arc id="a25" source="tr14" target="pl12" />
+  </net>
+</pnml>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-   <head>
-       <meta charset="utf-8">
-       <meta http-equiv="pragma" content="no-cache" />
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="pragma" content="no-cache" />
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <link href="../static/css/style.css" rel="stylesheet">
-       <script type="text/javascript"> 
-       //checking this part 
+        <script type="text/javascript">
+        //checking this part
         var places_var = '{{ places }}'
         //modified
-        var final_marking_name = '{{ final_marking_name }}'
+        var invalid_places_var = '{{ invalid_places }}'
         // alert(final_marking_name);
         var generate_button = false;
         function changeImage(img_name)
@@ -19,7 +19,8 @@
             var img = document.getElementById("image");
             img.src="../static/image/" + process_img + ".png";
         }
-   
+
+        /*
         function changeOriImage()
         {
             const tmp = places_var.replace("{","").replace("}","");
@@ -36,43 +37,84 @@
             }
             generate_button = false;
         }
+         */
 
-        function myFunc(places_var) {
-            if (generate_button == false){
-                const tmp = places_var.replace("{","").replace("}","");
-                const places_list = tmp.split(",");
-                // alert(final_marking_name);
-
-                // alert(places_list)
-                for(var i=0; i < places_list.length; i++)
-                (function () {
-                    var btn = document.createElement("BUTTON");
-                    var image_name = places_list[i];
-                    btn.id = 'btn' + places_list[i];
-                    btn.innerHTML = places_list[i];
-                    btn.setAttribute("value", places_list[i]);
-                    btn.setAttribute("text",places_list[i]);
-                    btn.style.fontSize = "14px";
-                    btn.style.backgroundColor = '#4CAF50';
-                    let buttonDiv = document.getElementById("buttons");
-                    buttonDiv.appendChild(btn);
-                    generate_button = true;
-                    if (String(places_list[i]).trim() != String(final_marking_name).trim()){
-                        btn.addEventListener("click", function() {
-                            changeImage(image_name);
-                            }   
-                        );
-                    }
-                    else{
-                        btn.addEventListener("click", function() {
-                            // changeImage("no_path")
-                            alert("This is the final marking. No path indicated.")
-                            }   
-                        );
-                    }
-                })();
+        function testInvalid(single_place, invalid_places_var){
+            for(var i = 0; i < invalid_places_var.length; i++ ){
+                if(invalid_places_var[i] == single_place){
+                    return true;
+                }
             }
+            return false;
         }
+
+        function myFunc(places_var, invalid_places_var) {
+            if (generate_button == false){
+                const tmp_invalid = invalid_places_var.replace("[","").replace("]","");
+                let invalid_places_list = tmp_invalid.split(", ")
+                    /*.sort(function(a, b){
+                    if(a.length < b.length) {
+                        return -1;
+                    }
+                    if(a < b) {
+                        return -1;
+                    }
+                    if(a === b) {
+                        return 0;
+                    }
+                    else return 1;
+                });
+                */
+                // console.log(places_var);
+                const tmp = places_var.replace("{","").replace("}","");
+                let places_list = tmp.split(", ").sort(function(a, b){
+                    if(a.length < b.length) {
+                        return -1;
+                    }
+                    if(a < b) {
+                        return -1;
+                    }
+                    if(a == b) {
+                        return 0;
+                    }
+                    else return 1;
+                });
+                // console.log(places_list);
+                // alert(final_marking_name);
+                for (var i = 0; i < places_list.length; i++){
+                    // alert(places_list)
+                    (function () {
+                        var btn = document.createElement("BUTTON");
+                        var image_name = places_list[i];
+                        btn.id = 'btn' + places_list[i];
+                        btn.innerHTML = places_list[i];
+                        btn.setAttribute("value", places_list[i]);
+                        btn.setAttribute("text",places_list[i]);
+                        btn.style.fontSize = "18px";
+                        let buttonDiv = document.getElementById("buttons");
+                        buttonDiv.appendChild(btn);
+                        generate_button = true;
+                        if (testInvalid(String(places_list[i]).trim(),invalid_places_list)){
+                            btn.style.backgroundColor = '';
+                            btn.style.color = '#FF0000'
+                            btn.addEventListener("click", function() {
+                                alert("This is an invalid place as it does not have multiple exclusive choices.")
+                            }   
+                        );
+
+                        }
+                        else{
+                            btn.style.backgroundColor = '#4CAF50';
+                                btn.addEventListener("click", function() {
+                                    changeImage(image_name);
+                                    }
+                                );
+                        }
+                    })();
+                }
+            }
+            }
+            
 
         function updateTextInput(val) {
           document.getElementById('textInput').value=val; 
@@ -83,42 +125,62 @@
           document.getElementById('textInput').value=val; 
         }
         </script>
-   </head>
-   
-   <body>
-       <h1>Petri Net for upload files</h1>
-       <img src="../static/image/petri_net.png" id = "image" alt="petri_net">
-       <h2 style = "text-align: center"> {{message}} </h2>
+    </head>
 
-       <!-- <h3>Here is Preview</h3> -->
-       <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
-       <button id="preview" onclick="myFunc('{{ places }}');">Preview </button>
-       <button id="origin_clickme" onclick="changeOriImage();">The original Image</button>
+    <body id = "body-wrapper">
 
-       <div id="buttons"></div>
-       
-       <!-- <div id = "sliders">
-       </div> -->
-       <div>
-           <p>These are interesting places: {{places}}</p>
-           <p>Please use comma "," to seperate between places</p>
-           <!-- loading might need to added here -->
-           <!-- <form action = "http://localhost:5000/select_places" method="POST"> -->
-            <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST">
-                <input type="text" id="select_places" name="select_places"><br><br>
-                <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
-                Model: <select name="modelSelect" id="modelSelect">
+        <div id = "header">
+            <h1>Process Mining Visual Analytic Tool</h1>
+        </div>
+
+        <div id = "petri-net-wrapper">
+            <h1>Generated Petri Net</h1>
+            <img src="../static/image/petri_net.png"
+                 style = "border: 3px solid #0e72ab;"
+                 id = "image" alt="petri_net">
+            <h2>Select Your Places</h2>
+
+            <!-- <h3>Here is Preview</h3> -->
+            <!-- <button id="clickme" onclick="changeImage();">Click to change image!</button> -->
+            <p>Click a button below to see the transitions for the named place <b>(only valid places are in green)!</b>
+            </p>
+            <button id="preview" onclick="myFunc('{{ places }}', '{{invalid_places}}');">Preview </button>
+            <!-- <button id="origin_clickme" onclick="changeOriImage();">The original Image</button> -->
+
+            <div id="buttons"></div>
+
+            <!-- <div id = "sliders">
+            </div> -->
+            <p>Type below a <b>valid</b> place name you're interested in!</p>
+                <!-- loading might need to added here -->
+                <!-- <form action = "http://localhost:5000/select_places" method="POST"> -->
+                <form action = "https://process-mining-zkathz2wkq-ts.a.run.app/select_places" method="POST">
+                    <input type="text" id="select_places" name="select_places" size="1%" maxlength="4">
+                    <br><br>
+                    <!-- <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);"> -->
+                    Model: <select name="modelSelect" id="modelSelect">
                     <!-- <select name="modelSelect" id="modelSelect" onchange="this.form.submit()"></select> -->
-                    <option value="rfb" selected>rfb</option>
-                    <option value="l1">l1</option>
-                    <option value="l2">l2</option>
-                </select> &nbsp;
-                Pen: <input type="range"  style="display: inline;" name="PenInputName" id="PenInputId" value="5" min="1" max="10" oninput="PenOutputId.value = PenInputId.value">
-                <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output> 
-                <br><br>
-                <input type="submit" value="Submit" onclick="$('#loading').show();">
-                <div id="loading" style="display:none;"><img src="../static/image/loading.gif" alt="" />Loading!</div>
-           </form>
-      </div>
-   </body>
+                                <option value="rfb" selected>rfb</option>
+                                <option value="l1">l1</option>
+                                <option value="l2">l2</option>
+                            </select> &nbsp;
+                    Penalty value: <input type="range"  style="display: inline;" name="PenInputName" id="PenInputId" value="5" min="1" max="10" oninput="PenOutputId.value = PenInputId.value">
+                    <output name="PenOutputName" id="PenOutputId">5 &nbsp;</output>
+                    <br><br>
+                    <input type="submit" class="submit" value="Submit" onclick="$('#loading2').show();">
+                    <div id="loading2" style="display:none;"><img src="../static/image/loading.gif" alt="" />May take a few minutes!</div>
+                </form>
+            </div>
+        </div>
+        <div id = "footer">
+            <h1>© 2021 Prof. Simon Poon's Project Group</h1>
+        </div>
+    </body>
 </html>
+
+<script>
+    var message = "{{ message }}";
+    if (message != ""){
+        alert(message);
+    }
+</script>

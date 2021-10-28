@@ -84,7 +84,7 @@ def draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, pr
 
     gviz = graphviz_visualization(net, image_format='png', initial_marking=None,
     final_marking=None, decorations=all_deco, debug=False, set_rankdir=None)
-    return gviz
+    return gviz, count
 
 def save_petri_net(gviz):
     filename = 'saved_drawings/petri_net'
@@ -192,13 +192,15 @@ def create_trace_alignment(log, net, initial_marking, final_marking, transitions
     return sequence, choice_sequence
 
 def drift_detection(choice_sequence, pen_value,model_type):
+    print("CHOICE SEQUENCE\n\n\n\n\n", len(choice_sequence))
     c = rpt.costs.CostRbf()
     algo = rpt.Pelt(model=model_type, custom_cost=c).fit(choice_sequence)
     result = algo.predict(pen = pen_value)
     # result = algo.predict(pen = 5)
-    ##print(test_sequence_1)
-    ##print(choice_sequence[1][0])
-    ##print(choice_sequence)
+    # print(test_sequence_1)
+    # print(choice_sequence[1][0])
+    # print(choice_sequence)
+    print("CHOICE SEQUENCE\n\n\n\n\n", len(choice_sequence))
     return result
 
 def print_drift_detection_results(result, sequence):
@@ -214,6 +216,7 @@ def get_drift_detection_results(result, sequence):
     return print_results
 
 #Prototype only, should modify the code below if using another model and log
+'''
 def get_prototype_prints(choice_sequence, result):
 
     results = []
@@ -282,6 +285,56 @@ def get_prototype_prints(choice_sequence, result):
     results.append(adder)
 
     return results
+'''
+def get_prototype_prints_generalise(choice_sequence, result, net, place):
+
+    a, b, c, d, e = get_interesting_place_dets(net.places, place)
+    num = len(b)
+    print("NUM ISSSS.....", num)
+
+    results = []
+    values = [0 for _ in range(num)]
+
+    for i in range(0, result[0]):
+        val = choice_sequence[i][0]
+        values[val - 1] += 1
+
+    total = result[0]
+    print("result[0] is", total)
+    if total > 0:
+        adder = []
+        for i in values:
+            adder.append(str(i / total))
+        results.append(adder)
+
+    values = [0 for _ in range(num)]
+    for i in range(result[0], result[1]):
+        val = choice_sequence[i][0]
+        values[val - 1] += 1
+
+    total = result[1] - result[0]
+    print("result[1] - result[0] is", total)
+    if total > 0:
+        adder = []
+        for i in values:
+            adder.append(str(i / total))
+        results.append(adder)
+
+    values = [0 for _ in range(num)]
+    for i in range(result[1], len(choice_sequence)):
+        val = choice_sequence[i][0]
+        values[val - 1] += 1
+
+    total = len(choice_sequence) - result[1]
+    print("len(choice_sequence) - result[1] is", total)
+    if total > 0:
+        adder = []
+        for i in values:
+            adder.append(str(i / total))
+        results.append(adder)
+
+    return results
+
 
 def check_upload_file(filename):
     ALLOWED_EXTENSIONS = {"xes", "pnml"}
@@ -290,6 +343,7 @@ def check_upload_file(filename):
         return True
     return False
 
+'''
 def main():
     net_path = "test_files/helpdesk.pnml"
     log_path = "test_files/helpdesk.xes"
@@ -331,6 +385,7 @@ def main():
 
     # rpt.display(choice_sequence, result)
     # plt.show()
+'''
 
 def get_paths(path, files):
     if files[0].filename.rsplit(".")[1] == "xes":
@@ -383,12 +438,3 @@ def verify_files(files, upload_folder):
 
 def get_places(net):
     return net.places
-
-
-# if __name__ == "__main__":
-#     main()
-
-
-
-
-
