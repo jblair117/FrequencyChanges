@@ -35,14 +35,21 @@ def index():
             if(valid_count == 2):
                 net_path, log_path = model.get_paths(app.config['UPLOAD_FOLDER'], files)
                 net, initial_marking, final_marking = model.get_petri_net(net_path)
+
+                global start
+                start = model.get_marking_name(initial_marking)
+                global end
+                end = model.get_marking_name(final_marking)
+
                 places, transitions, arcs = model.get_attributes_of_petri_net(net)
                 gviz = model.draw_petri_net(net, initial_marking, final_marking, places, arcs)
                 model.save_visual(gviz)
                 # print("hi")
                 # global valid_places
                 global invalid_places
-                invalid_places = model.draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs)
-                print("----------", invalid_places[0])
+                invalid_places = model.draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs, start, end)
+                print("Invalid places[0] is ----------", invalid_places[0])
+                print(type(invalid_places[0]))
                 # print("hi", valid_places,invalid_places)
                 places_in_url = model.redo_places(places)
                 return redirect(url_for('select_places'))
@@ -63,9 +70,7 @@ def select_places():
         p, transitions, arcs = model.get_attributes_of_petri_net(net)
 
         global start
-        start = model.get_marking_name(initial_marking)
         global end
-        end = model.get_marking_name(final_marking)
 
         pf = f"{p}"
         start_brace = "{"

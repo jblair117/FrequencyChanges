@@ -22,12 +22,17 @@ def get_attributes_of_petri_net(net):
 def draw_petri_net(net, initial_marking, final_marking, places, arcs):
     return detector.draw_petri_net(net, initial_marking, final_marking, places, arcs)
 
-def draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs):
+def draw_save_petri_net_previews(net, initial_marking, final_marking, places, arcs, start, end):
     # valid_places = []
     invalid_places = []
     for p in places:
         tmp_gviz, count = detector.draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, p.name)
-        detector.save_preview_petri_net(tmp_gviz,p.name)
+        if p.name == start:
+            detector.save_preview_petri_net(tmp_gviz, "START")
+        elif p.name == end:
+            detector.save_preview_petri_net(tmp_gviz, "END")
+        else:
+            detector.save_preview_petri_net(tmp_gviz, p.name)
         print(count)
         if count <= 2:
             invalid_places.append(p)

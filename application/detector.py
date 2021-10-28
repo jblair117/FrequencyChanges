@@ -73,6 +73,7 @@ def draw_petri_net(net, initial_marking, final_marking, places, arcs):
 def draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, preview_place):
     deco = {}
 
+    print("PREVIEW PLACE IS --\n--\n--", preview_place)
     count = 1
     for i in arcs:
         if i.source.name == preview_place:
