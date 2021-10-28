@@ -48,7 +48,7 @@
 #upload-submit {
     position: relative;
     display: inline-block;
-    top: 10vh;
+    top: 7vh;
     font-size: 60%;
     /*
      * if every confused about the divs, give them background colour
@@ -153,16 +153,26 @@ div#loading {
 }
 
 div#loading2 {
-    position: absolute;
-    right: 7vw;
-    top: 65vh;
+    position: relative;
+    vertical-align: bottom;
     /* align-items: center; */
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     display: inline-block;
     /* padding: 15px 32px; */
     /* margin: 4px 2px; */
 }
+
+/*
+div#loading2 {
+    position: absolute;
+    right: 7vw;
+    top: 65vh;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+*/
 
 
 span {

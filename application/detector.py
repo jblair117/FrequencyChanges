@@ -44,17 +44,26 @@ Draw the Petri Net
 def draw_petri_net(net, initial_marking, final_marking, places, arcs):
     deco = {}
     for i in arcs:
-            deco[i] = {"color":"red"}
+        deco[i] = {"color":"blue"}
+
     initial_place_name = get_marking_name(initial_marking)
     final_place_name = get_marking_name(final_marking)
 
-    for place in places:
-        if place.name == initial_place_name:
-            deco[place] = {"label": place.name, "color": "green"}
-        elif place.name == final_place_name:
-            deco[place] = {"label": place.name, "color": "orange"}
+    for place in net.places:
+        if len(place.out_arcs) <= 1:
+            if place.name == initial_place_name:
+                deco[place] = {"label": "START", "color": "red"}
+            elif place.name == final_place_name:
+                deco[place] = {"label": "END", "color": "red"}
+            else:
+                deco[place] = {"label": place.name, "color":"red"}
         else:
-            deco[place] = {"label":place.name,"color":"yellow"}
+            if place.name == initial_place_name:
+                deco[place] = {"label": "START", "color": "green"}
+            elif place.name == final_place_name:
+                deco[place] = {"label": "END", "color": "green"}
+            else:
+                deco[place] = {"label": place.name, "color": "green"}
 
     # pnml_exporter.apply(net, initial_marking, "test_files/createdPetriNet1.pnml", final_marking=final_marking)
     gviz = graphviz_visualization(net, image_format='png', initial_marking=None,
@@ -62,28 +71,37 @@ def draw_petri_net(net, initial_marking, final_marking, places, arcs):
     return gviz
 
 def draw_petri_net_preview(net, initial_marking, final_marking, places, arcs, preview_place):
-    all_deco = {}
+    deco = {}
 
     count = 1
     for i in arcs:
         if i.source.name == preview_place:
-            all_deco[i] = {"label": str(count), "penwidth":'2'}
+            deco[i] = {"label": str(count), "penwidth":'2'}
             count += 1
         else:
-            all_deco[i] = {"color":"red"}
+            deco[i] = {"color":"blue"}
+
     initial_place_name = get_marking_name(initial_marking)
     final_place_name = get_marking_name(final_marking)
 
-    for place in places:
-        if place.name == initial_place_name:
-            all_deco[place] = {"label": place.name, "color": "green"}
-        elif place.name == final_place_name:
-            all_deco[place] = {"label": place.name, "color": "orange"}
+    for place in net.places:
+        if len(place.out_arcs) <= 1:
+            if place.name == initial_place_name:
+                deco[place] = {"label": "START", "color": "red"}
+            elif place.name == final_place_name:
+                deco[place] = {"label": "END", "color": "red"}
+            else:
+                deco[place] = {"label": place.name, "color": "red"}
         else:
-            all_deco[place] = {"label":place.name,"color":"yellow"}
+            if place.name == initial_place_name:
+                deco[place] = {"label": "START", "color": "green"}
+            elif place.name == final_place_name:
+                deco[place] = {"label": "END", "color": "green"}
+            else:
+                deco[place] = {"label": place.name, "color": "green"}
 
     gviz = graphviz_visualization(net, image_format='png', initial_marking=None,
-    final_marking=None, decorations=all_deco, debug=False, set_rankdir=None)
+    final_marking=None, decorations=deco, debug=False, set_rankdir=None)
     return gviz, count
 
 def save_petri_net(gviz):
