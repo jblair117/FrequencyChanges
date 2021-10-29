@@ -110,7 +110,7 @@ def select_places():
             global invalid
             valid, invalid = model.valid_places(p, select_places)
             if len(invalid) > 0 and len(valid) == 0:
-                return render_template('petri_net.html', places = ps, invalid_places = invalid_placess, message = "The place you enetered is invalid. Please Try Again.")
+                return render_template('petri_net.html', places = ps, invalid_places = invalid_placess, message = "The place you entered is invalid. Please Try Again.")
             if len(valid) > 1:
                 return render_template('petri_net.html', places = ps, invalid_places = invalid_placess, message = "You entered more than one place, please enter only one.")
             if len(valid) == 1:
