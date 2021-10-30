@@ -5,7 +5,7 @@
 The purpose of this system is to provide valuable information to a business process by detecting drift points and using branching frequencies to see points in time where we can evaluate critical details such as 
 
 - where resources should be further utilised, or
-- processes entirely changed to fit actual events rather than how events are expected to occur.
+- process that should be entirely changed to fit actual events rather than how the events are expected to occur.
 
 A real world application use is in a hospital triage process, where if the proportion of emergency patients is found to be increasing, more resources can be sent to the emergency department to optimise the process.
 
